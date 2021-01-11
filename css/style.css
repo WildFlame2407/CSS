@@ -20,6 +20,7 @@ body {
     line-height: 1.7; /*vzdalenost mezi radky (aspon myslim)*/
     color: #777; 
     padding: 30px;
+    filter: drop-shadow(30px 30px 15px rgba(0, 0, 0, .5));/*dava se na parent element*/
 }
 
 .header {
@@ -46,7 +47,7 @@ body {
     height: 35px; /*velikost obrazku*/
 }
 
-.logo:hover { /*hover zmeni se stav elementu, kdyz na nej prejedu mysi*/
+.logo-box:hover { /*hover zmeni se stav elementu, kdyz na nej prejedu mysi*/
     animation: moveInRight 1s ease-out;
 }
 
@@ -111,11 +112,7 @@ body {
 @keyframes moveInRight {
     
     0% {
-        opacity: 0;
         transform: translateX(100px);
-    }
-    50% {
-        /*transform: rotate(180deg); /*otoceni o pocet uvedenych stupnu */
     }
 
     80% {
@@ -135,7 +132,7 @@ body {
     padding: 15px 40px; /*jedna hodnota vsechny strany 2 hodnoty dve protilehle strany vyska sirka*/
     display: inline-block; /*muzu to zarovant pomoci text-align: centre, v tride text-box; ridise to jako text*/
     border-radius: 100px;/*zaobleni*/
-    transition: all .2s; /*animace takove vynoreni*/
+    transition: all .2s; /*doba prubehu animace*/
     position: relative;
 }
 
@@ -177,7 +174,7 @@ body {
 
 .btn-animated {
     animation: fromBottom 0.5s ease-out 0.75s;
-    animation-fill-mode: backwards; /*poprehazi to poradi spustenych trid*/
+    animation-fill-mode: backwards; /*vrati element do stavu pred animaci*/
 }
 @keyframes fromBottom {
     0%{
@@ -189,79 +186,4 @@ body {
         transform: translateY(0);
     }
 }
-
-.test-imgs {
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-    margin-left: 23%;
-    margin-right: 22.55%;
-    height: 600px;
-    text-align: center;
-    /* backface-visibility: hidden; */
-    animation: Animation 1s ease-out;
-}
-
-.img1 {
-    display: inline-block;
-    height: 600px;
-    position: relative;
-    clip-path: polygon(0 0, 100% 100%, 0 100%);
-    animation: animaceObrazku1 .5s ease-out;
-}
-.img2 {
-    display: inline-block;
-    height: 600px;
-    position: absolute;
-    left: 50%;
-    clip-path: polygon(0 0, 100% 0, 100% 87%);
-    transform: translate(-43.8%, 0);
-    animation: animaceObrazku2 .5s ease-out;
-}
-
-.test-imgs:hover{
-    transform: translateY(-10px);
-    box-shadow: 30px 30px 10px rgba(0, 0, 0, .2);
-
-}
-
-.test-imgs:hover .img1{
-    box-shadow: 30px 30px 10px rgba(0, 0, 0, .2);
-}
-
-
-
-@keyframes Animation {
-    0%{
-        opacity: 0;
-     }
-     100%{
-         opacity: 1;
-     }
-}
-
-@keyframes animaceObrazku1 {
-    0%{
-        position: absolute;
-        opacity: 0;
-        transform: translate(-70%, 0);
-     }
-     100%{
-         position: absolute;
-         opacity: 1;
-         transform: translate(-50%, 0);
-         
-     }
-}
-
- @keyframes animaceObrazku2 {
-     0%{
-        opacity: 0;
-        transform: translate(-23.8%, 0);
-     }
-     100%{
-         opacity: 1;
-         transform: translate(-43.8%, 0);
-     }
-     
- }
 
