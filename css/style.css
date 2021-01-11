@@ -1,0 +1,267 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7; /*vzdalenost mezi radky (aspon myslim)*/
+    color: #777; 
+    padding: 30px;
+}
+
+.header {
+    height: 95vh; /*vh - projcenta toho ce jde videt*/
+    background-image: linear-gradient(to right bottom,rgba(126, 213, 111, 0.8), #28b485c9), url(../img/hero.jpg);
+
+    /*linear gradient - spektrum barev 
+    rgba- red green blue a prusvitnost; na zacet se dava odkud kam*/
+    background-size: cover;  /*zmensi mi to obazek podle vleikosti okna.*/
+    background-position: top;/*pri zmene velikosti otevreneho okna se nam pozadi priblizi na predem urcene misto*/
+    position: relative; /*pozice je relativni*/
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* sutrihnuti obrazku podle stanovenych bodu*/
+
+
+}
+
+.logo-box {
+    position: absolute; /*pozice je pevne dana*/
+    top: 40px; /*40 px odzhora*/
+    left: 40px; /*40px z leva*/
+}
+
+.logo{
+    height: 35px; /*velikost obrazku*/
+}
+
+.logo:hover { /*hover zmeni se stav elementu, kdyz na nej prejedu mysi*/
+    animation: moveInRight 1s ease-out;
+}
+
+.text-box {
+    position: absolute;
+    top:  40%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* stanovi se bod, podle ktereho se bude umisteni/zarovnani ridit.
+    bod je stanove n v 50*% sve vysky a 50 sve sirky*/
+    text-align: center;
+}
+
+.heading-primary{
+    color: #ffffff;
+    text-transform: uppercase; /*preveder pismena na velka*/
+    backface-visibility: hidden; /*resi to nejakou sracku odpoved na MDN (resi to problem poposkoceni nahoru animace na konci, "shaking")
+    zadni strana elementu nejde videt*/
+    margin-bottom: 60px;
+}
+.heading-primary-main{
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+    
+    animation-name: moveInLeft; /*pridani animace a musi se nastavit jak dlouho to potrva*/
+    animation-duration: 1s; /*doba animace*/
+    
+    animation-timing-function: ease-out; /*jaky bude mit animace prbeh; priklad: linearne, na zacatku pomalu, nebo an konci*/
+    /*animation-iteration-count: 3; /*kolikrat se animace spusti*/
+    /*animation-delay: 3s; /*za jak dlouho se animace spusti po znovunacteni stranky*/
+
+}
+.heading-primary-sub{
+    display: block;
+    font-size: 20px;
+    font-weight: 700; 
+    letter-spacing: 17.4px; /*mezeri mezi zubama XD*/
+
+    animation: moveInRight 1s ease-out; /*spojuje animation-name/duration/timing-funciton*/
+}
+
+
+
+@keyframes moveInLeft {
+    /*procenta ukazuji v jakem casti animace se co deje*/
+    0%{
+        opacity: 0; /*jestli to jde videt 0 - ne; 1 - ano; opacity v cestine prusvitnost*/
+        transform: translateX(-100px); /*pouziva se pro animace - posunuti na ose / zmena pozice*/
+    }
+
+    80%{
+        transform: translateX(10px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    50% {
+        /*transform: rotate(180deg); /*otoceni o pocet uvedenych stupnu */
+    }
+
+    80% {
+        transform: translateX(-10px);
+    } 
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.btn:link, 
+.btn:visited {/*toto bude platit kdyz clovek narazi na odkaz*/
+    text-transform: uppercase;
+    text-decoration: none; /*ruzne podtrnhuti a ostanti nesmysly*/
+    padding: 15px 40px; /*jedna hodnota vsechny strany 2 hodnoty dve protilehle strany vyska sirka*/
+    display: inline-block; /*muzu to zarovant pomoci text-align: centre, v tride text-box; ridise to jako text*/
+    border-radius: 100px;/*zaobleni*/
+    transition: all .2s; /*animace takove vynoreni*/
+    position: relative;
+}
+
+.btn:hover{ /*toto bude platit kdyz clovek na to najede mysi*/
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2); /*stin za tlacitekm; box-shadow: (stin v rovine x), (stin v rovine y), (rozmazani), (rgba)*/
+}
+
+.btn:active { /*toto bude platit kdyz clovek klikne na link*/
+    transform: translateY(-2px);
+}
+
+.btn-white {
+    background-color: #ffffff;
+    color: #777;
+}
+
+.btn::after{/*after vytvari jakousi kopii kterou muzeme pouzit;*/
+    content: ""; /*content a blok se musi nastavit, jinak by to nejelo + display*/
+    display: inline-block;
+    height: 100%;/*width a height zachova stejnou velikost pokud nastavime 100%*/
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /*stanovujeme ze kopie bude pod odkazem/tlacitkem*/
+    transition: all 0.4s;
+}
+
+.btn-white::after{
+    background-color: #ffffff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6); /*scale zvetsuje velikost; cislo nasobi*/
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: fromBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards; /*poprehazi to poradi spustenych trid*/
+}
+@keyframes fromBottom {
+    0%{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.test-imgs {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-left: 23%;
+    margin-right: 22.55%;
+    height: 600px;
+    text-align: center;
+    /* backface-visibility: hidden; */
+    animation: Animation 1s ease-out;
+}
+
+.img1 {
+    display: inline-block;
+    height: 600px;
+    position: relative;
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+    animation: animaceObrazku1 .5s ease-out;
+}
+.img2 {
+    display: inline-block;
+    height: 600px;
+    position: absolute;
+    left: 50%;
+    clip-path: polygon(0 0, 100% 0, 100% 87%);
+    transform: translate(-43.8%, 0);
+    animation: animaceObrazku2 .5s ease-out;
+}
+
+.test-imgs:hover{
+    transform: translateY(-10px);
+    box-shadow: 30px 30px 10px rgba(0, 0, 0, .2);
+
+}
+
+.test-imgs:hover .img1{
+    box-shadow: 30px 30px 10px rgba(0, 0, 0, .2);
+}
+
+
+
+@keyframes Animation {
+    0%{
+        opacity: 0;
+     }
+     100%{
+         opacity: 1;
+     }
+}
+
+@keyframes animaceObrazku1 {
+    0%{
+        position: absolute;
+        opacity: 0;
+        transform: translate(-70%, 0);
+     }
+     100%{
+         position: absolute;
+         opacity: 1;
+         transform: translate(-50%, 0);
+         
+     }
+}
+
+ @keyframes animaceObrazku2 {
+     0%{
+        opacity: 0;
+        transform: translate(-23.8%, 0);
+     }
+     100%{
+         opacity: 1;
+         transform: translate(-43.8%, 0);
+     }
+     
+ }
+
