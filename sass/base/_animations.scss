@@ -1,0 +1,43 @@
+@keyframes moveInLeft {
+    /*procenta ukazuji v jakem casti animace se co deje*/
+    0%{
+        opacity: 0; /*jestli to jde videt 0 - ne; 1 - ano; opacity v cestine prusvitnost*/
+        transform: translateX(-10rem); /*pouziva se pro animace - posunuti na ose / zmena pozice*/
+    }
+
+    80%{
+        transform: translateX(1rem);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    
+    0% {
+        transform: translateX(10rem);
+    }
+
+    80% {
+        transform: translateX(-1rem);
+    } 
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes fromBottom {
+    0%{
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

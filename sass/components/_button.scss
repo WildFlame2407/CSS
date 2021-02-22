@@ -1,0 +1,99 @@
+
+.btn{
+
+    &,
+    &:link, 
+    &:visited {/*toto bude platit kdyz clovek narazi na odkaz*/
+        text-transform: uppercase;
+        text-decoration: none; /*ruzne podtrnhuti a ostanti nesmysly*/
+        padding: 1.5rem 4rem; /*jedna hodnota vsechny strany 2 hodnoty dve protilehle strany vyska sirka*/
+        display: inline-block; /*muzu to zarovant pomoci text-align: centre, v tride text-box; ridise to jako text*/
+        border-radius: 10rem;/*zaobleni*/
+        /*transition: all .2s; /*doba prubehu animace*/
+        position: relative;
+        font-size: $default-font-size;
+    }
+
+    &{
+        border: none;
+        outline: none;
+    }
+    
+    &:hover{ /*toto bude platit kdyz clovek na to najede mysi*/
+        transform: translateY(-0.3rem);
+        box-shadow: 0 5px 10px rgba($color-balck, .2); /*stin za tlacitekm; box-shadow: (stin v rovine x), (stin v rovine y), (rozmazani), (rgba)*/
+    }
+    
+    &:active { /*toto bude platit kdyz clovek klikne na link*/
+        transform: translateY(-0.2rem);
+    }
+    
+    &-white {
+        background-color:$color-white;
+        color: $color-gray-dark;
+        &::after{
+            background-color: $color-white;
+        }
+    }
+    
+    &-green {
+        background-color:$color-primary;
+        color: $color-white;
+        &::after{
+            background-color: $color-primary;
+        }
+    }
+    
+    &::after{/*after vytvari jakousi kopii kterou muzeme pouzit;*/
+        content: ""; /*content a blok se musi nastavit, jinak by to nejelo + display*/
+        display: inline-block;
+        height: 100%;/*width a height zachova stejnou velikost pokud nastavime 100%*/
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1; /*stanovujeme ze kopie bude pod odkazem/tlacitkem*/
+        transition: all 0.4s;
+    }
+    
+    
+    &:hover::after {
+        transform: scaleX(1.4) scaleY(1.6);/*scale zvetsuje velikost; cislo nasobi*/
+        opacity: 0;
+    
+    }
+    
+    &-animated {
+        animation: fromBottom 0.5s ease-out 0.75s;
+        animation-fill-mode: backwards; /*vrati element do stavu pred animaci*/
+    }
+}
+
+
+.btn-text {
+    &:link, 
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: 3px;
+        transition: all 0.2s;
+
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-balck, .15);
+        transform: translateY(-2px);
+        
+    }
+
+    &:active {
+        box-shadow: 0 0.5rem 1rem rgba($color-balck, .15);
+        transform: translateY(0);
+    }
+}

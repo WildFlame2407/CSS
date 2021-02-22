@@ -1,0 +1,49 @@
+.header {
+    height: 85vh; /*vh - projcenta toho ce jde videt*/
+    background-image: linear-gradient(to right bottom,rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero-small.jpg);
+
+    /*linear gradient - spektrum barev 
+    rgba- red green blue a prusvitnost; na zacet se dava odkud kam*/
+    background-size: cover;  /*zmensi mi to obazek podle vleikosti okna.*/
+    background-position: top;/*pri zmene velikosti otevreneho okna se nam pozadi priblizi na predem urcene misto*/
+    position: relative; /*pozice je relativni*/
+    
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)){
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);/*aby to fungovalo i na jinych prohlizecich*/
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* sutrihnuti obrazku podle stanovenych bodu*/
+        height: 95vh; 
+    }
+    
+    @include respond(phone){
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%); 
+    }                                                                       //, funguje jako or ||
+    @media (min-resolution: 192dpi) and (min-width: 37.5em),
+    (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), (min-width: 125em){  //jestlize screen ma nad 192 dpi - to znoci je je high resolution a pouziva 2x
+        background-image: linear-gradient(to right bottom,rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg);
+    }
+}
+
+
+.logo-box {
+    position: absolute; /*pozice je pevne dana*/
+    top: 4rem; /*40 px odzhora*/
+    left: 4rem; /*40px z leva*/
+}
+
+.logo{
+    height: 3rem; /*velikost obrazku*/
+}
+
+.logo-box:hover { /*hover zmeni se stav elementu, kdyz na nej prejedu mysi*/
+    animation: moveInRight 1s ease-out;
+}
+
+.text-box {
+    position: absolute;
+    top:  40%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* stanovi se bod, podle ktereho se bude umisteni/zarovnani ridit.
+    bod je stanove n v 50*% sve vysky a 50 sve sirky*/
+    text-align: center;
+}

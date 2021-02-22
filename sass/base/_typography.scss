@@ -1,0 +1,82 @@
+body {
+    font-family: "lato", sans-serif;
+    font-weight: 400;
+    /* font-size: 16px; */
+    line-height: 1.7; /*vzdalenost mezi radky (aspon myslim)*/
+    color: $color-gray-dark; 
+    /*filter: drop-shadow(30px 30px 15px rgba(0, 0, 0, .5));/*dava se na parent element*/
+}
+
+.heading-primary{
+    color: $color-white;
+    text-transform: uppercase; /*preveder pismena na velka*/
+    backface-visibility: hidden; /*resi to nejakou sracku odpoved na MDN (resi to problem poposkoceni nahoru animace na konci, "shaking")
+    zadni strana elementu nejde videt*/
+    margin-bottom: 60px;
+
+.heading-primary-main{
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    
+    animation-name: moveInLeft; /*pridani animace a musi se nastavit jak dlouho to potrva*/
+    animation-duration: 1s; /*doba animace*/
+    
+    animation-timing-function: ease-out; /*jaky bude mit animace prbeh; priklad: linearne, na zacatku pomalu, nebo an konci*/
+    /*animation-iteration-count: 3; /*kolikrat se animace spusti*/
+    /*animation-delay: 3s; /*za jak dlouho se animace spusti po znovunacteni stranky*/
+    
+    @include respond(phone){
+        letter-spacing: 1rem;    
+    }
+}
+}
+.heading-primary-sub{
+    display: block;
+    font-size: 2rem;
+    font-weight: 700; 
+    letter-spacing: 1.74rem; /*mezeri mezi zubama XD*/
+
+    animation: moveInRight 1s ease-out; /*spojuje animation-name/duration/timing-funciton*/
+    @include respond(phone){
+        letter-spacing: .5rem;
+    }
+}
+
+.heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    display: inline-block;/*je stanovena sirka u block je sirka cela obrazovka*/
+    font-weight: 700;
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    -webkit-background-clip: text; /*pozadi bude poze tam, kde je text*/
+    color: transparent;/*zneviditelneni textu, takze jde videt pouze pozadi*/
+    letter-spacing: 2px;
+    transition: all 0.2s;
+    @include respond(tab-port){
+        font-size: 3rem;
+    }
+    @include respond(phone){
+        font-size: 2.5rem;
+    }
+    
+
+    &:hover {
+        transform: skewY(2deg) skewX(15deg) scale(1.1);/*skewY otoceni s tim ze pismena budou porad svisle*/
+        text-shadow: .5rem .1rem 2rem rgba($color-balck, 0.2);
+    }
+}
+
+.heading-tertiary {
+    font-size: $default-font-size;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.paragraph {
+    font-size: $default-font-size;
+    &:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+}

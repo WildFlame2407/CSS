@@ -1,0 +1,26 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch:sass": "node-sass sass/main.scss css/style.css -w", 
+
+    "compile:sass": "node-sass sass/main.scss css/style.comp.css", 
+    "concat:css": "concat -o css/style.concat.css css/icon-font.css css/style.comp.css",
+    "prefix:css": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WildFlame2407/CSS.git"
+  },
+  "author": "Jakub Vozenilek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WildFlame2407/CSS/issues"
+  },
+  "homepage": "https://github.com/WildFlame2407/CSS#readme",
+  "devDependencies": {
+    "node-sass": "^5.0.0"
+  }
+}
